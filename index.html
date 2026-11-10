@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蔡婉雯 Wanwen Cai | AIGC内容创作 · 导演 · 编剧 · 剪辑</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C46B7A'>蔡</text></svg>">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --bg:#FAF6F3; --ink:#2D2B3D; --ink-light:#5C5870; --ink-lighter:#9A96A8;
+  --accent:#C46B7A; --accent-dark:#A85060; --gold:#E8A87C;
+  --accent-light:rgba(196,107,122,0.1); --line:#E8DFD9; --card:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Noto Serif SC',serif}
+.container{max-width:1100px;margin:0 auto;padding:0 40px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,246,243,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px 0}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+nav .logo{font-weight:700;font-size:15px;letter-spacing:1px}
+nav .logo span{color:var(--accent)}
+.tabs{display:flex;gap:6px}
+.tab-btn{padding:6px 18px;font-size:13px;border:none;background:0 0;color:var(--ink-light);cursor:pointer;border-radius:20px;transition:all .3s;font-family:inherit}
+.tab-btn.active{background:var(--ink);color:#fff}
+.tab-btn:hover:not(.active){color:var(--accent)}
+.page{display:none}.page.active{display:block}
+
+/* HERO with video bg */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg video{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,27,46,0.35) 0%,rgba(30,27,46,0.55) 100%)}
+.hero-content{position:relative;z-index:2;width:100%;color:#fff;padding:120px 0 80px}
+.hero-content .hero-tag{font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:20px}
+.hero-content h1{font-family:'Noto Serif SC',serif;font-size:64px;font-weight:900;line-height:1.1;margin-bottom:8px;letter-spacing:2px;text-shadow:0 2px 20px rgba(0,0,0,0.2)}
+.hero-content .role{font-size:20px;color:var(--gold);font-weight:500;margin-bottom:24px;text-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.hero-content .subtitle{font-size:15px;max-width:500px;line-height:1.9;margin-bottom:36px;opacity:0.92}
+.hero-stats{display:flex;gap:48px}
+.hero-stat .num{font-size:32px;font-weight:700;color:var(--gold);line-height:1}
+.hero-stat .label{font-size:12px;margin-top:6px;opacity:0.8}
+.mute-btn{position:absolute;top:90px;right:40px;z-index:10;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.mute-btn:hover{background:rgba(255,255,255,0.25)}
+
+/* Section */
+section{padding:90px 0}
+.section-tag{font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
+.section-title{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:700;margin-bottom:8px}
+.section-line{width:40px;height:3px;background:linear-gradient(90deg,var(--accent),var(--gold));margin:20px 0 44px;border-radius:2px}
+
+/* Cards */
+.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.adv-card{background:var(--card);padding:30px;border-radius:8px;border-left:3px solid var(--accent);box-shadow:0 2px 16px rgba(45,43,61,0.04)}
+.adv-num{font-size:13px;color:var(--accent);font-weight:700;margin-bottom:10px}
+.adv-card h3{font-size:16px;font-weight:700;margin-bottom:10px}
+.adv-card p{font-size:13px;color:var(--ink-light);line-height:1.7}
+
+/* Video */
+.featured-video{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(45,43,61,0.08);margin-bottom:24px}
+.featured-video video{width:100%;display:block}
+.fv-body{padding:32px}
+.fv-badge{display:inline-block;font-size:10px;letter-spacing:1px;color:#fff;background:var(--accent);padding:3px 12px;border-radius:2px;margin-bottom:12px}
+.fv-body h3{font-family:'Noto Serif SC',serif;font-size:22px;margin-bottom:12px}
+.fv-body p{font-size:14px;color:var(--ink-light);line-height:1.8;margin-bottom:12px}
+.fv-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.fv-tags span{font-size:11px;padding:4px 12px;background:var(--accent-light);color:var(--accent);border-radius:2px}
+
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.video-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
+.video-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.vc-body{padding:20px}
+.video-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.video-card p{font-size:12px;color:var(--ink-light);line-height:1.7}
+
+/* Cosplay grid - 2 rows of 5 */
+.ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ac-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06);transition:transform .3s,box-shadow .3s}
+.ac-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(45,43,61,0.12)}
+.ac-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.ac-card .ac-body{padding:14px 16px}
+.ac-card h4{font-size:13px;font-weight:700}
+.ac-card p{font-size:11px;color:var(--ink-lighter);margin-top:2px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:32px}.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-32px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl-date{font-size:12px;color:var(--accent);font-weight:500;margin-bottom:4px}
+.tl-title{font-size:15px;font-weight:700;margin-bottom:2px}
+.tl-company{font-size:12px;color:var(--ink-lighter);margin-bottom:8px}
+.tl-desc{font-size:13px;color:var(--ink-light);line-height:1.7}
+
+/* MINISO */
+.sub-section-tag{font-size:13px;font-weight:700;margin:28px 0 16px;padding-left:12px;border-left:3px solid var(--accent)}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.work-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
+.work-card img{width:100%;display:block}
+.work-card .body{padding:22px}
+.work-card .tag{display:inline-block;font-size:10px;letter-spacing:1px;color:var(--accent);background:var(--accent-light);padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.work-card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.work-card p{font-size:12px;color:var(--ink-light);line-height:1.7}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.g-item{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:16/9}
+.g-item img{width:100%;height:100%;object-fit:cover}
+.g-item .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:#fff;padding:20px 14px 10px;font-size:12px}
+.miniso-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.miniso-video-grid .video-card video{aspect-ratio:16/9}
+
+/* Film */
+.film-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.film-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
+.film-card .thumb{aspect-ratio:16/9;overflow:hidden;position:relative}
+.film-card .thumb img{width:100%;height:100%;object-fit:cover}
+.film-card .role-badge{position:absolute;top:10px;left:10px;background:var(--accent);color:#fff;font-size:10px;padding:3px 10px;border-radius:2px}
+.film-card .info{padding:18px}
+.film-card h3{font-size:15px;font-weight:700}
+.film-card .genre{font-size:11px;color:var(--accent);margin:4px 0 10px}
+.film-card .desc{font-size:12px;color:var(--ink-light);line-height:1.7}
+.film-btn{display:inline-block;margin-top:10px;padding:5px 14px;background:var(--accent);color:#fff;font-size:11px;text-decoration:none;border-radius:2px;transition:opacity .2s}
+.film-btn:hover{opacity:.85}
+
+/* Resume */
+.resume-header{padding:120px 0 40px}
+.resume-header h1{font-family:'Noto Serif SC',serif;font-size:42px;margin-bottom:4px}
+.resume-header .sub{font-size:16px;color:var(--accent);margin-bottom:24px}
+.resume-contact{font-size:13px;color:var(--ink-light);line-height:2}
+.resume-section{margin-bottom:40px}
+.resume-section h3{font-size:16px;font-weight:700;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:16px}
+.resume-item{margin-bottom:16px}
+.ri-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.ri-title{font-size:14px;font-weight:700}
+.ri-date{font-size:12px;color:var(--ink-lighter)}
+.ri-sub{font-size:12px;color:var(--ink-light);margin:2px 0 6px}
+.resume-item ul{padding-left:18px}
+.resume-item li{font-size:13px;color:var(--ink-light);line-height:1.8}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tags span{font-size:12px;padding:4px 12px;background:var(--accent-light);color:var(--ink);border-radius:2px}
+
+/* Contact */
+.contact{background:var(--ink);color:var(--bg);padding:80px 0}
+.contact .section-tag{color:var(--gold)}.contact .section-title{color:#fff}.contact .section-line{background:linear-gradient(90deg,var(--accent),var(--gold))}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.contact-info p{font-size:15px;margin-bottom:10px;opacity:.9}
+.contact-info strong{color:var(--gold)}
+footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .hero h1{font-size:42px}
+  .adv-grid,.work-grid,.video-grid,.contact-grid,.miniso-video-grid{grid-template-columns:1fr}
+  .ac-grid{grid-template-columns:1fr}
+  .gallery,.film-grid{grid-template-columns:1fr}
+  .container{padding:0 24px}
+  .section-title{font-size:26px}
+  .mute-btn{right:20px;top:80px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <div class="logo">WANWEN CAI <span>·</span> PORTFOLIO</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showPage(event,'works')">作品展示</button>
+      <button class="tab-btn" onclick="showPage(event,'acg')">二次元创作</button>
+      <button class="tab-btn" onclick="showPage(event,'resume')">个人简历</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== WORKS PAGE ===== -->
+<div class="page active" id="page-works">
+
+<!-- HERO with video bg -->
+<section class="hero">
+  <div class="hero-bg">
+    <video id="heroVideo" src="web_assets/video-01.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <button class="mute-btn" id="muteBtn" style="opacity:0.6" onclick="toggleMute()" title="开启/关闭声音">
+    <svg id="muteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+  </button>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-tag">PORTFOLIO / 2026</div>
+      <h1 class="serif">蔡婉雯</h1>
+      <div class="role">AIGC内容创作 / 导演 / 编剧 / 摄影 / 剪辑</div>
+      <p class="subtitle">影视制作科班 × AIGC实战经验的复合型内容人才，以叙事功底与技术敏感度，将品牌理念转化为高效可落地的商业视觉内容。</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">3.9</div><div class="label">硕士 GPA</div></div>
+        <div class="hero-stat"><div class="num">1万+</div><div class="label">自媒体粉丝</div></div>
+        <div class="hero-stat"><div class="num">50万+</div><div class="label">单条最高播放</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Advantage -->
+<section style="background:#fff">
+  <div class="container reveal">
+    <div class="section-tag">01 / CORE ADVANTAGE</div>
+    <h2 class="section-title serif">核心优势</h2>
+    <div class="section-line"></div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-num">01</div>
+        <h3>影视科班 × AIGC全流程创作</h3>
+        <p>美国电影制作硕士（GPA 3.9/4.0），熟练运用可灵、Seedance、剪映AI等工具，将AI视频生成与专业剪辑技能深度结合，独立完成从概念到成片的全链路交付。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">02</div>
+        <h3>商业视频广告独立交付能力</h3>
+        <p>从一张产品图到可投放广告，独立完成AI生成、剪辑、配乐、字幕全流程；为游戏、电商、快消品牌提供AIGC视频素材，大幅降低制作成本与周期。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">03</div>
+        <h3>数据驱动运营与圈层洞察</h3>
+        <p>从0到1搭建双平台万粉账号，单条播放超50万；深度理解二次元社群与二创文化，能将IP特性转化为高传播性视觉内容。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">04</div>
+        <h3>国际化视野与跨文化生产</h3>
+        <p>托福101分，拥有美国影视公司与CCTV经验，熟悉国内外内容生产标准，能独立完成面向海外市场的视频策划与制作。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AIGC -->
+<section id="aigc">
+  <div class="container reveal">
+    <div class="section-tag">02 / AIGC VIDEO PRODUCTION</div>
+    <h2 class="section-title serif">AIGC视频创作</h2>
+    <div class="section-line"></div>
+    <div class="featured-video">
+      <video src="web_assets/video-02.mp4" controls preload="metadata" poster="web_assets/image-01.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">原创剧本 · 全AIGC生成</div>
+        <h3 class="serif">《云开》· AIGC剧情片概念先导</h3>
+        <p>原创剧本的AIGC叙事影像实验，全片画面均由Seedance 2.0生成。从世界建立、人物设定、分镜设计到画面生成、视听包装全流程独立完成，探索AI参与剧情片影像表达的可能边界。</p>
+        <div class="fv-tags">
+          <span>原创剧本</span><span>分镜设计</span><span>Seedance 2.0</span><span>全AI生成</span><span>概念先导</span>
+        </div>
+      </div>
+    </div>
+    <div class="featured-video">
+      <video src="web_assets/video-03.mp4" controls preload="metadata" poster="web_assets/image-02.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">游戏PV · AI全流程制作</div>
+        <h3 class="serif">《穿越火线》主题PV · 30秒紧凑版</h3>
+        <p>独立完成导演创意阐述、分镜脚本、AI角色设定、提示词工程、AI视频生成、后期剪辑与音效设计全流程。以"枪战、御姐、双形态、听觉超能力"为核心关键词，构建"秘密交易—识破阴谋—反杀突围"的完整叙事。</p>
+        <p>运用豆包（角色四视图）→ DeepSeek（提示词优化）→ LibTV/Tapnow（分镜出图）→ 剪映Seedance 2.0（镜头微调）→ 剪映AI（音效/音乐/补帧）的多工具链协作，在有限资源下完成从概念到成片的完整制作。</p>
+        <div class="fv-tags">
+          <span>导演创意</span><span>分镜脚本</span><span>AI角色设定</span><span>提示词工程</span>
+          <span>Seedance</span><span>剪映AI</span><span>音效设计</span><span>30秒/60秒双版本</span>
+        </div>
+      </div>
+    </div>
+    <div class="featured-video">
+      <video src="web_assets/video-04.mp4" controls preload="metadata" poster="web_assets/image-03.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">TO C科普 · AI全流程制作</div>
+        <h3 class="serif">华大基因 · 宠物基因检测AIGC科普片</h3>
+        <p>面向养宠人群的通俗科普，独立撰写脚本并全链路全案制作，成片获得公司高度认可。</p>
+        <p>运用豆包工作版生成人物形象参考图，通过Tapnow调用Seedance 2.5制作视频素材，最后使用剪映完成剪辑包装与合成。</p>
+        <div class="fv-tags">
+          <span>脚本撰写</span><span>全案制作</span><span>豆包工作版</span><span>Tapnow</span><span>Seedance 2.5</span><span>剪映AI</span><span>字幕包装</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-05.mp4" controls preload="metadata" poster="web_assets/image-04.jpg"></video>
+        <div class="vc-body">
+          <h4>mewaii 黑猫毛绒玩具 · 亚马逊广告</h4>
+          <p>合作方starpony仅提供产品静态图，独立完成AI视频生成、剪辑合成、AI配乐与字幕包装，输出可投放亚马逊的商业广告。</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-06.mp4" controls preload="metadata" poster="web_assets/image-05.jpg"></video>
+        <div class="vc-body">
+          <h4>无穷卤蛋 × 蛋小萌 · 「上班搭子」创意短片</h4>
+          <p>面向18-30岁年轻人群，从用户洞察到IP形象设计、AI生图、图生视频、后期包装全流程AIGC赋能，15秒短视频。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Films -->
+<section style="background:#fff">
+  <div class="container reveal">
+    <div class="section-tag">03 / FILM WORKS</div>
+    <h2 class="section-title serif">电影作品</h2>
+    <div class="section-line"></div>
+    <div class="film-grid">
+      <div class="film-card">
+        <div class="thumb">
+          <img src="web_assets/image-07.jpg" alt="JUNE">
+          <div class="role-badge">编剧/导演/剪辑</div>
+        </div>
+        <div class="info">
+          <h3>JUNE</h3>
+          <div class="genre">惊悚悬疑 · 约15分钟</div>
+          <div class="desc">独立完成12页英文剧本，主导拍摄与后期全流程。</div>
+          <a class="film-btn" href="https://pan.baidu.com/s/18ofpCxx9xpNaO24yK202LA?pwd=7htq" target="_blank">观看影片</a>
+        </div>
+      </div>
+      <div class="film-card">
+        <div class="thumb">
+          <img src="web_assets/image-08.jpg" alt="REUNION">
+          <div class="role-badge">DIT/剪辑</div>
+        </div>
+        <div class="info">
+          <h3>REUNION</h3>
+          <div class="genre">家庭情感 · 剧情短片</div>
+          <div class="desc">入选Poppy Jasper等3个国际电影节，获最佳原创配乐提名。</div>
+          <a class="film-btn" href="https://pan.baidu.com/s/18ofpCxx9xpNaO24yK202LA?pwd=7htq" target="_blank">观看影片</a>
+        </div>
+      </div>
+      <div class="film-card">
+        <div class="thumb">
+          <img src="web_assets/image-09.jpg" alt="LUCIANA">
+          <div class="role-badge">剪辑/声效设计</div>
+        </div>
+        <div class="info">
+          <h3>LUCIANA</h3>
+          <div class="genre">情感成长 · 约25分钟</div>
+          <div class="desc">负责剪辑与声效设计，美国圣地亚哥拍摄。</div>
+          <a class="film-btn" href="https://pan.baidu.com/s/18ofpCxx9xpNaO24yK202LA?pwd=7htq" target="_blank">观看影片</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section>
+  <div class="container reveal">
+    <div class="section-tag">04 / WORK EXPERIENCE</div>
+    <h2 class="section-title serif">工作经历</h2>
+    <div class="section-line"></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026.10 - 至今</div>
+        <div class="tl-title">天机智能 · AIGC视频创意编导</div>
+        <div class="tl-company">市场部 | 具身智能赛道 · 深圳</div>
+        <div class="tl-desc">0-1启动AIGC系列创意视频，独立完成脚本构思、AI分镜生成到后期包装全流程，重构AI视频工作流，单条制作周期从15天缩短至24小时；统筹产品视频全案制作，建立前置排期与拍摄SOP，解决跨部门协作痛点。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026.03 - 2026.09</div>
+        <div class="tl-title">名创优品 · 视频编导专员</div>
+        <div class="tl-company">海外事业二部 | 品牌视频 · 企业文化 · 视觉设计</div>
+        <div class="tl-desc">独立策划制作品牌宣传片、业绩标杆人物专访与企业文化视频；熟练运用AIGC工具提升创作效率；完成品牌KV、IP文化墙等平面设计；深入门店开展潮玩零售业态调研。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2024.07 - 2025.01</div>
+        <div class="tl-title">U-MEDIA GROUP · 剪辑助理</div>
+        <div class="tl-company">洛杉矶 · 影视后期</div>
+        <div class="tl-desc">使用Premiere完成视频粗剪，日均处理4小时素材，协助主剪辑师节省30%工时，累计参与8个项目初剪版本。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2024.06 - 2024.07</div>
+        <div class="tl-title">CCTV · 视频剪辑（外包）</div>
+        <div class="tl-company">时政点评视频 · 洛杉矶</div>
+        <div class="tl-desc">独立完成30+条时政短视频剪辑，单条平均播放5万+。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2023.08 - 2023.10</div>
+        <div class="tl-title">MiniMax · 新媒体运营实习</div>
+        <div class="tl-company">AIGC产品营销 · 洛杉矶</div>
+        <div class="tl-desc">负责Talkie（AI聊天应用）社媒传播，主导10+创意脚本，助力iOS娱乐榜从43位升至31位。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2023.03 - 2023.08</div>
+        <div class="tl-title">红门影业 · 剪辑助理实习</div>
+        <div class="tl-company">洛杉矶 · 纪录片后期</div>
+        <div class="tl-desc">独立完成采访脚本转化、素材剪辑，累计处理素材超50小时，管理10TB文件。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISO -->
+<section>
+  <div class="container reveal">
+    <div class="section-tag">05 / TIANJI INTELLIGENCE</div>
+    <h2 class="section-title serif">天机智能 · 产品影像</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">
+      任职天机智能市场部AIGC视频创意编导期间，负责具身智能产品的视觉内容创作。从产品卖点提炼、拍摄脚本、现场统筹到后期剪辑与包装，独立完成产品视频全案制作，以实拍影像呈现自研硬件的精密结构与动作表现。
+    </p>
+    <div class="sub-section-tag">自研灵巧手 · 产品亮相片（实拍全案）</div>
+    <div class="featured-video">
+      <video src="web_assets/video-07.mp4" controls preload="metadata" poster="web_assets/image-06.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">实拍产品片 · 全案制作</div>
+        <h3 class="serif">天机智能 · 自研灵巧手</h3>
+        <p>纯实拍产品亮相视频，独立完成策划、拍摄与剪辑包装的全案服务，以克制的工业影像语言呈现灵巧手的结构精度与动作质感。</p>
+        <div class="fv-tags">
+          <span>策划</span><span>现场拍摄</span><span>剪辑包装</span><span>纯实拍</span><span>产品影像</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="container reveal">
+    <div class="section-tag">06 / MINISO KEY WORKS</div>
+    <h2 class="section-title serif">名创优品 · 品牌视觉与企业文化</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">
+      任职名创优品海外事业二部视频编导期间，深度参与企业文化建设与品牌视觉输出。从人物专访的选题策划、脚本撰写、现场拍摄到后期剪辑全流程独立完成；统筹季度大会、集团活动等高层会议的视觉内容制作；熟悉从0到1搭建内部传播平台、将业务故事转化为有感染力的品牌叙事。
+    </p>
+    <div class="sub-section-tag">业绩标杆人物专访 · 全流程独立完成</div>
+    <div class="miniso-video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-08.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>加拿大区 · 李润铃</h4><p>从选题策划到剪辑包装全流程独立制作。</p></div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-09.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>澳大利亚区 · 吴秀媚</h4><p>深入业务一线挖掘人物故事。</p></div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-10.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>马来区 · 甘彩谊</h4><p>三期标杆专访，支撑文化荣誉体系。</p></div>
+      </div>
+    </div>
+    <div class="sub-section-tag">集团活动与高层大会视觉</div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-11.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>MNI TALK 决赛快剪回顾</h4><p>独立负责现场拍摄与后期快剪剪辑。</p></div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-12.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>海外二部上半年大事件回顾</h4><p>跨部门资源整合，在高层大会现场播放。</p></div>
+      </div>
+    </div>
+    <div class="sub-section-tag">品牌视觉设计与门店洞察</div>
+    <div class="work-grid" style="margin-top:16px">
+      <div class="work-card">
+        <img src="web_assets/image-10.jpg" alt="活动现场">
+        <div class="body">
+          <div class="tag">活动统筹</div>
+          <h3>大型活动视觉记录与高层演讲视频</h3>
+          <p>参与多季度集团大会与价值观大会，从视觉记录到主视觉KV设计全流程把控。</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <img src="web_assets/image-11.jpg" alt="门店调研">
+        <div class="body">
+          <div class="tag">门店调研</div>
+          <h3>正佳广场MINISO LAND潮玩零售业态洞察</h3>
+          <p>驻店调研一周，分析IP驱动营收结构与主题店运营体系。</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery" style="margin-top:16px">
+      <div class="g-item">
+        <img src="web_assets/image-12.jpg" alt="KUMARU">
+        <div class="caption">KUMARU大耳朵小熊 IP文化墙设计</div>
+      </div>
+      <div class="g-item">
+        <img src="web_assets/image-13.jpg" alt="Tutoto">
+        <div class="caption">Tutoto萝卜街 IP文化墙设计</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tianji Intelligence -->
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-tag">07 / CONTACT</div>
+    <h2 class="section-title serif">期待与您合作</h2>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p><strong>蔡婉雯</strong> Wanwen Cai</p>
+        <p>电话：158 1166 2058</p>
+        <p>邮箱：3368537152@qq.com</p>
+        <p>现居：广东 · 广州</p>
+      </div>
+      <div style="text-align:right;font-size:14px;opacity:.7">
+        <p>以叙事赋能品牌</p>
+        <p>用内容连接人心</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- end page-works -->
+
+<!-- ===== ACG PAGE ===== -->
+<div class="page" id="page-acg">
+  <div class="container" style="padding-top:120px">
+    <div class="section-tag">SELF-MEDIA / COSPLAY CONTENT</div>
+    <h2 class="section-title serif">二次元内容创作</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">
+      独立运营二次元Cosplay赛道双平台账号（小红书4,726粉/7.6万赞，抖音5,217粉/6.9万赞），从选题策划、分镜脚本、出镜拍摄到后期制作全流程独立完成。参与二次元社群互动与游戏官方二创活动，产出内容获赞破千并获官方激励资金，双平台获赞收藏超10万。
+    </p>
+    <div class="ac-grid">
+      <div class="ac-card">
+        <video src="web_assets/video-13.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>孤雏</h4><p>原创剧情创作</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-14.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>鬼灭之刃 · 乱世巨星</h4><p>团片混剪创作</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-15.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>善狯 · 吻痕</h4><p>剧情向视频正片</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-16.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>闪桃 · 七夕</h4><p>七夕主题剧情创作</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-17.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>实玄 · 小刀子</h4><p>角色剧情向剪辑</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-18.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>童琴 · 折枝花满衣</h4><p>双人剧情视频</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-19.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>夏以昼</h4><p>乙游角色cosplay</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-20.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>张佳乐 · 生贺</h4><p>生日应援创作</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-21.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>岸边客</h4><p>古风剧情创作</p></div>
+      </div>
+      <div class="ac-card">
+        <video src="web_assets/video-22.mp4" controls preload="metadata"></video>
+        <div class="ac-body"><h4>达达利亚</h4><p>原神角色cosplay</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESUME PAGE ===== -->
+<div class="page" id="page-resume">
+  <div class="container">
+    <div class="resume-header">
+      <h1 class="serif">蔡婉雯</h1>
+      <div class="sub">AIGC内容创作 / 导演 / 编剧 / 摄影 / 剪辑</div>
+      <div class="resume-contact">
+        电话：+86 15811662058　|　邮箱：3368537152@qq.com<br>
+        出生：1999.09
+      </div>
+    </div>
+
+    <div class="resume-section">
+      <h3>个人评价</h3>
+      <p style="font-size:13px;color:var(--ink-light);line-height:1.9;margin-bottom:12px">
+        深耕AIGC内容创作的复合型影视人才，兼具好莱坞影视工业底蕴与国内新媒体爆款操盘经验。
+      </p>
+      <ul style="padding-left:18px">
+        <li style="font-size:13px;color:var(--ink-light);line-height:1.8"><strong style="color:var(--ink)">AI赋能的全案编导：</strong>精通主流AIGC工具矩阵（SD/可灵/剪映AI等），擅长以导演思维驾驭AI工具，将传统"实拍+后期"流程重构为"AI生成+人工视听精修"的高效SOP。</li>
+        <li style="font-size:13px;color:var(--ink-light);line-height:1.8"><strong style="color:var(--ink)">敏锐的爆款叙事力：</strong>从0到1独立操盘双平台自媒体，单条视频播放破50万+。深谙二次元/游戏圈层文化与年轻用户情绪痛点，能将IP概念转化为高传播性视觉叙事。</li>
+        <li style="font-size:13px;color:var(--ink-light);line-height:1.8"><strong style="color:var(--ink)">影视级统筹与交付：</strong>拥有海外成熟剧组及国内大厂实战经验，具备极强的工业化制片意识，擅长在复杂跨部门协作中建立前置排期与SOP，保障高规格创意内容零延误、高标准交付。</li>
+      </ul>
+    </div>
+
+    <div class="resume-section">
+      <h3>教育背景</h3>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">洛约拉马利蒙特大学 · 电影与电视制作（艺术硕士）</span><span class="ri-date">2021.09 - 2024.06</span></div>
+        <div class="ri-sub">美国·洛杉矶　|　GPA: 3.9/4.0　|　主修：高级剪辑、视觉特效、音效设计、故事创作、制片管理</div>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">华南农业大学 · 广播电视编导（艺术学学士）</span><span class="ri-date">2017.09 - 2021.06</span></div>
+        <div class="ri-sub">中国·广州　|　GPA: 3.92/4.0　|　校级三等奖学金</div>
+      </div>
+    </div>
+
+    <div class="resume-section">
+      <h3>工作经历</h3>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">天机智能 · AIGC视频创意编导（市场部）</span><span class="ri-date">2026.10 - 至今</span></div>
+        <div class="ri-sub">中国·深圳</div>
+        <ul>
+          <li>0-1启动AIGC系列创意视频，独立完成脚本构思、AI分镜生成到后期包装全流程，重构AI视频工作流，单条制作周期从15天缩短至24小时</li>
+          <li>统筹产品视频全案制作，建立前置排期与拍摄SOP，通过标准化需求对齐机制解决跨部门协作痛点</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">名创优品 · 视频编导专员（海外事业二部）</span><span class="ri-date">2026.03 - 2026.09</span></div>
+        <div class="ri-sub">中国·广州</div>
+        <ul>
+          <li>AIGC赋能品牌视觉与营销制作：独立操盘品牌宣传及产品营销视频，深度结合AIGC工具与Premiere/剪映专业版，沉淀标准化AIGC视频产出SOP</li>
+          <li>高规格叙事与高层视觉包装：主导集团核心叙事内容，独立操盘业绩标杆人物专访全流程3期交付；统筹各季度大会及高层对外演讲主视觉KV设计</li>
+          <li>跨部门统筹与业务前端赋能：从0到1搭建海外二部内部视频平台；深入一线门店调研，输出门店运营调研报告</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">独立影视创作者 · 自由职业</span><span class="ri-date">2025.01 - 2026.02</span></div>
+        <div class="ri-sub">中国·珠海</div>
+        <ul>
+          <li>自媒体IP孵化与AIGC实战：独立运营小红书及抖音账号，双平台累计获赞超15万，验证圈层内容转化力</li>
+          <li>短剧剧组全流程实战：担任DIT（数字影像工程师）及粗剪师，管理超数十TB数据零丢失，协助导演梳理叙事节奏</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">U-MEDIA GROUP · 剪辑师</span><span class="ri-date">2024.07 - 2025.01</span></div>
+        <div class="ri-sub">美国·洛杉矶</div>
+        <ul>
+          <li>视频全流程制作：使用Premiere完成视频粗剪，日均处理4小时素材，协助主剪辑师节省30%工时，累计参与8个项目初剪版本</li>
+          <li>项目协同与标准化建设：对接客户/导演30+次会议，建立版本追踪表与双备份方案，管理20TB数据100%安全可追溯</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">CCTV · 视频剪辑（外包项目）</span><span class="ri-date">2024.06 - 2024.07</span></div>
+        <div class="ri-sub">美国·洛杉矶</div>
+        <ul>
+          <li>视频全流程制作：独立完成30+条时政短视频，运用Premiere与After Effects完成剪辑调色、配乐及中英双语动态字幕</li>
+          <li>跨部门协同与合规管控：作为记者团队与后期制作核心对接人，严格审核政治表述及画面合规性，实现零差错安全发布</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">MiniMax · AIGC内容营销实习生</span><span class="ri-date">2023.08 - 2023.10</span></div>
+        <div class="ri-sub">美国·洛杉矶</div>
+        <ul>
+          <li>AIGC营销视频制作：独立策划并产出20+创意视频、图片及文案，形成可复用内容生产标准，助力产品曝光量提升30%</li>
+          <li>社媒传播策划与执行：主导Talkie（AI聊天应用）10+创意脚本设计，助力iOS娱乐榜从43位升至31位，单月新增用户增长25%</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">红门影业（美国）· 剪辑助理实习生</span><span class="ri-date">2023.03 - 2023.08</span></div>
+        <div class="ri-sub">美国·洛杉矶</div>
+        <ul>
+          <li>视频制作：独立完成纪录片采访素材脚本转化、剪辑合成与特效制作，累计处理素材超50小时</li>
+          <li>流程与协同：与导演、摄像、音效团队高频协作；建立素材分类归档体系（超10TB），提升检索与复用效率</li>
+        </ul>
+      </div>
+      <div class="resume-item">
+        <div class="ri-head"><span class="ri-title">Student Medicover保险公司 · 媒体部实习生</span><span class="ri-date">2022.06 - 2022.08</span></div>
+        <div class="ri-sub">美国·洛杉矶</div>
+        <ul><li>独立搭建小红书校园账号，产出30+篇图文与短视频，3个月粉丝突破1700+，单篇笔记最高阅读量3万+</li></ul>
+      </div>
+    </div>
+
+    <div class="resume-section">
+      <h3>个人作品</h3>
+      <ul style="list-style:none;padding:0">
+        <li style="font-size:13px;color:var(--ink-light);line-height:2">
+          《Reunion》剪辑师（2024）— 入选Poppy Jasper国际电影节、沃森维尔电影节、Sunscreen国际电影节，获最佳原创配乐提名<br>
+          《Luciana》剪辑师（2024）｜《Hancock Park》助理剪辑师（2023）｜《Mom is Visiting》DIT（2023）<br>
+          《Carol the Cactus》DIT/音效设计（2023）｜《Happy Curly》DIT（2023）｜《June》导演/剪辑师（2023）｜《How to Be a Good Ghost》导演/剪辑师（2022）
+        </li>
+      </ul>
+    </div>
+
+    <div class="resume-section">
+      <h3>技能与工具</h3>
+      <p style="font-size:13px;color:var(--ink-light);line-height:1.8;margin-bottom:12px"><strong style="color:var(--ink)">语言：</strong>英语流利（托福101分、CET-6 525分），可作为工作语言，适应国际化办公及跨文化沟通</p>
+      <div class="skill-tags" style="margin-bottom:14px">
+        <span>Midjourney</span><span>Stable Diffusion</span><span>Runway</span><span>可灵AI</span><span>剪映AI</span><span>Seedance</span>
+      </div>
+      <div class="skill-tags" style="margin-bottom:14px">
+        <span>Premiere Pro</span><span>DaVinci Resolve</span><span>After Effects</span><span>Avid Media Composer</span>
+        <span>Photoshop</span><span>Lightroom</span><span>Pro Tools</span><span>Final Draft</span>
+      </div>
+      <div class="skill-tags">
+        <span>Movie Magic Scheduling/Budgeting</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 蔡婉雯 Wanwen Cai · All Rights Reserved</footer>
+
+<script>
+function showPage(e,name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  e.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(observeReveal,100);
+}
+function toggleMute(){
+  var v=document.getElementById('heroVideo');
+  var btn=document.getElementById('muteBtn');
+  v.muted=!v.muted;
+  btn.style.opacity=v.muted?0.6:1;
+}
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+function observeReveal(){
+  document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+}
+observeReveal();
+</script>
+</body>
+</html>
