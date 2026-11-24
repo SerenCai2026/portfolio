@@ -110,6 +110,27 @@ section{padding:90px 0}
 .miniso-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
 .miniso-video-grid .video-card video{aspect-ratio:16/9}
 
+/* AI Workflow */
+.wf-pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.wf-step{background:var(--card);border-radius:8px;padding:20px 18px;box-shadow:0 2px 16px rgba(45,43,61,0.05);border-top:3px solid var(--accent)}
+.wf-step .n{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:8px}
+.wf-step h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.wf-step p{font-size:12px;color:var(--ink-light);line-height:1.6}
+.wf-case{background:var(--card);border-radius:8px;padding:26px 30px;box-shadow:0 2px 16px rgba(45,43,61,0.05);margin-bottom:24px}
+.wf-case h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.wf-case .note{font-size:12px;color:var(--ink-lighter);margin-bottom:10px}
+.wf-case-row{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}
+.wf-case-row:last-child{border-bottom:0}
+.wf-case-row .k{color:var(--accent);font-weight:700}
+.wf-case-row .v{color:var(--ink-light);line-height:1.7}
+.wf-boundary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.wf-b-card{background:var(--accent-light);border-radius:8px;padding:18px}
+.wf-b-card h5{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--accent-dark)}
+.wf-b-card p{font-size:12px;color:var(--ink-light);line-height:1.6}
+.wf-result{display:flex;gap:48px;flex-wrap:wrap;margin-top:28px;padding:26px 30px;background:var(--ink);border-radius:8px;color:#fff}
+.wf-result .r-num{font-size:28px;font-weight:700;color:var(--gold);line-height:1.1}
+.wf-result .r-label{font-size:12px;opacity:.8;margin-top:6px}
+
 /* Film */
 .film-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .film-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
@@ -156,6 +177,8 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
   .hero h1{font-size:42px}
   .adv-grid,.work-grid,.video-grid,.contact-grid,.miniso-video-grid{grid-template-columns:1fr}
   .ac-grid{grid-template-columns:1fr}
+  .wf-pipeline,.wf-boundary{grid-template-columns:1fr}
+  .wf-case-row{grid-template-columns:1fr;gap:4px}
   .gallery,.film-grid{grid-template-columns:1fr}
   .container{padding:0 24px}
   .section-title{font-size:26px}
@@ -232,10 +255,92 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
   </div>
 </section>
 
+<!-- AI Workflow -->
+<section id="workflow">
+  <div class="container reveal">
+    <div class="section-tag">02 / AI WORKFLOW</div>
+    <h2 class="section-title serif">我的 AI 视频创作工作流</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:760px;margin-bottom:36px;line-height:1.9">
+      不报工具名称，只讲在真实项目里跑通、可复用的标准化流程。核心原则：<strong style="color:var(--ink)">先锁定不变的（主体、商品、风格），再生成变化的（动作、场景、镜头）；能用局部修改解决的，绝不整段重生成。</strong>
+    </p>
+    <div class="wf-pipeline">
+      <div class="wf-step">
+        <div class="n">STEP 01</div>
+        <h4>需求拆解</h4>
+        <p>明确受众、目标结果与交付规格（时长、画幅、分辨率、是否要音频），先定平台画幅。</p>
+      </div>
+      <div class="wf-step">
+        <div class="n">STEP 02</div>
+        <h4>资产准备</h4>
+        <p>选定统一参考主图，参考素材命名入库，按场景确定主模型与备选模型。</p>
+      </div>
+      <div class="wf-step">
+        <div class="n">STEP 03</div>
+        <h4>分镜与提示词</h4>
+        <p>先出分镜表，再用固定结构写提示词：主体锁定、场景、动作、镜头、光线、音频、约束。</p>
+      </div>
+      <div class="wf-step">
+        <div class="n">STEP 04</div>
+        <h4>生成与一致性</h4>
+        <p>统一主图、固定描述块、首尾帧锁定、尾帧接首帧、多图参考，保证主体不漂移。</p>
+      </div>
+      <div class="wf-step">
+        <div class="n">STEP 05</div>
+        <h4>校验与返工</h4>
+        <p>三级处理：局部编辑定点改、同素材重生成、改提示词与参考后重来，保留满意镜头。</p>
+      </div>
+      <div class="wf-step">
+        <div class="n">STEP 06</div>
+        <h4>剪辑成片</h4>
+        <p>按分镜拼接，统一调色与音量，加字幕、转场、配乐，全片规格与品牌信息校验。</p>
+      </div>
+      <div class="wf-step">
+        <div class="n">STEP 07</div>
+        <h4>沉淀复用</h4>
+        <p>提示词、参考主图、模板与踩坑记录入库，下次同类需求直接调用，缩短周期。</p>
+      </div>
+    </div>
+
+    <div class="sub-section-tag">实战案例：天机智能 AIGC 系列视频（场景—问题—工具—过程—结果）</div>
+    <div class="wf-case">
+      <h4 class="serif">具身智能产品的高频视频生产</h4>
+      <div class="note">按「场景、问题、工具、过程、结果」五步结构复盘</div>
+      <div class="wf-case-row"><div class="k">场景</div><div class="v">具身智能产品需要高频展会与社媒视频，团队此前没有成熟的 AI 生产流程。</div></div>
+      <div class="wf-case-row"><div class="k">问题</div><div class="v">传统实拍加后期单条约 15 天，赶不上展会节奏；跨部门需求反复、信息不互通。</div></div>
+      <div class="wf-case-row"><div class="k">工具</div><div class="v">豆包 / DeepSeek（脚本与提示词）、Seedance 2.0/2.5（画面生成）、Tapnow（分镜出图）、剪映（剪辑包装）。</div></div>
+      <div class="wf-case-row"><div class="k">过程</div><div class="v">统一参考主图与固定商品描述块，首尾帧锁定画面，尾帧接首帧串联镜头，局部编辑定点修复，按三级返工决策控制生成次数。</div></div>
+      <div class="wf-case-row"><div class="k">结果</div><div class="v">单条制作周期从 15 天缩短至 24 小时，0-1 跑通 AIGC 系列，并形成团队可复用的 SOP。</div></div>
+    </div>
+
+    <div class="sub-section-tag">工具边界：AI 负责提效，判断与校验由人完成</div>
+    <div class="wf-boundary">
+      <div class="wf-b-card">
+        <h5>脚本边界</h5>
+        <p>AI 初稿偏模板化，结合账号用户、产品方向与历史数据筛选，不直接采用。</p>
+      </div>
+      <div class="wf-b-card">
+        <h5>资料边界</h5>
+        <p>行业资料可能出错，关键事实人工核验，不把内容责任交给工具。</p>
+      </div>
+      <div class="wf-b-card">
+        <h5>表达边界</h5>
+        <p>人物对白按出镜人语言习惯重写，AI 不替代最终判断与审美。</p>
+      </div>
+    </div>
+
+    <div class="wf-result">
+      <div><div class="r-num">15天 → 24小时</div><div class="r-label">单条制作周期</div></div>
+      <div><div class="r-num">7 阶段</div><div class="r-label">标准化流程</div></div>
+      <div><div class="r-num">提示词 / 图库</div><div class="r-label">持续复用沉淀</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- AIGC -->
 <section id="aigc">
   <div class="container reveal">
-    <div class="section-tag">02 / AIGC VIDEO PRODUCTION</div>
+    <div class="section-tag">03 / AIGC VIDEO PRODUCTION</div>
     <h2 class="section-title serif">AIGC视频创作</h2>
     <div class="section-line"></div>
     <div class="featured-video">
@@ -296,7 +401,7 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
 <!-- Films -->
 <section style="background:#fff">
   <div class="container reveal">
-    <div class="section-tag">03 / FILM WORKS</div>
+    <div class="section-tag">04 / FILM WORKS</div>
     <h2 class="section-title serif">电影作品</h2>
     <div class="section-line"></div>
     <div class="film-grid">
@@ -343,7 +448,7 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
 <!-- Experience -->
 <section>
   <div class="container reveal">
-    <div class="section-tag">04 / WORK EXPERIENCE</div>
+    <div class="section-tag">05 / WORK EXPERIENCE</div>
     <h2 class="section-title serif">工作经历</h2>
     <div class="section-line"></div>
     <div class="timeline">
@@ -396,7 +501,7 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
 <!-- MINISO -->
 <section>
   <div class="container reveal">
-    <div class="section-tag">05 / TIANJI INTELLIGENCE</div>
+    <div class="section-tag">06 / TIANJI INTELLIGENCE</div>
     <h2 class="section-title serif">天机智能 · 产品影像</h2>
     <div class="section-line"></div>
     <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">
@@ -419,7 +524,7 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
 
 <section style="background:#fff">
   <div class="container reveal">
-    <div class="section-tag">06 / MINISO KEY WORKS</div>
+    <div class="section-tag">07 / MINISO KEY WORKS</div>
     <h2 class="section-title serif">名创优品 · 品牌视觉与企业文化</h2>
     <div class="section-line"></div>
     <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">
@@ -487,7 +592,7 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
 <!-- Contact -->
 <section class="contact" id="contact">
   <div class="container">
-    <div class="section-tag">07 / CONTACT</div>
+    <div class="section-tag">08 / CONTACT</div>
     <h2 class="section-title serif">期待与您合作</h2>
     <div class="section-line"></div>
     <div class="contact-grid">
