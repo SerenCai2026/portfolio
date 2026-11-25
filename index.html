@@ -131,6 +131,24 @@ section{padding:90px 0}
 .wf-result .r-num{font-size:28px;font-weight:700;color:var(--gold);line-height:1.1}
 .wf-result .r-label{font-size:12px;opacity:.8;margin-top:6px}
 
+/* Workflow chain */
+.wf-chain{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;gap:0;align-items:stretch;margin-bottom:38px}
+.wf-node{background:var(--card);border-radius:10px;padding:24px 22px;box-shadow:0 2px 16px rgba(45,43,61,0.05);border-top:3px solid var(--accent);position:relative}
+.wf-node .stage{font-size:10px;letter-spacing:1.2px;color:var(--accent);font-weight:700;margin-bottom:10px}
+.wf-node h4{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:.3px}
+.wf-node .role{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:10px;display:inline-block;background:rgba(232,168,124,.14);padding:2px 8px;border-radius:2px}
+.wf-node p{font-size:12px;color:var(--ink-light);line-height:1.7}
+.wf-arrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;font-weight:300;opacity:.55}
+.wf-stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px}
+.wf-s{background:var(--card);border-radius:6px;padding:15px 14px;border-left:3px solid var(--accent);transition:.25s}
+.wf-s:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(196,107,122,.14)}
+.wf-s .n{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:6px}
+.wf-s h5{font-size:13px;font-weight:700;margin-bottom:5px}
+.wf-s p{font-size:11px;color:var(--ink-lighter);line-height:1.55}
+.wf-standard{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.wf-standard span{font-size:11px;color:var(--ink-light);background:var(--accent-light);border-radius:20px;padding:6px 13px}
+.wf-note-line{font-size:12px;color:var(--ink-lighter);line-height:1.8;margin-top:18px}
+
 /* Film */
 .film-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .film-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
@@ -178,6 +196,9 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
   .adv-grid,.work-grid,.video-grid,.contact-grid,.miniso-video-grid{grid-template-columns:1fr}
   .ac-grid{grid-template-columns:1fr}
   .wf-pipeline,.wf-boundary{grid-template-columns:1fr}
+  .wf-chain{grid-template-columns:1fr;gap:8px}
+  .wf-arrow{transform:rotate(90deg);height:18px}
+  .wf-stage-grid{grid-template-columns:repeat(2,1fr)}
   .wf-case-row{grid-template-columns:1fr;gap:4px}
   .gallery,.film-grid{grid-template-columns:1fr}
   .container{padding:0 24px}
@@ -255,92 +276,10 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
   </div>
 </section>
 
-<!-- AI Workflow -->
-<section id="workflow">
-  <div class="container reveal">
-    <div class="section-tag">02 / AI WORKFLOW</div>
-    <h2 class="section-title serif">我的 AI 视频创作工作流</h2>
-    <div class="section-line"></div>
-    <p style="font-size:14px;color:var(--ink-light);max-width:760px;margin-bottom:36px;line-height:1.9">
-      不报工具名称，只讲在真实项目里跑通、可复用的标准化流程。核心原则：<strong style="color:var(--ink)">先锁定不变的（主体、商品、风格），再生成变化的（动作、场景、镜头）；能用局部修改解决的，绝不整段重生成。</strong>
-    </p>
-    <div class="wf-pipeline">
-      <div class="wf-step">
-        <div class="n">STEP 01</div>
-        <h4>需求拆解</h4>
-        <p>明确受众、目标结果与交付规格（时长、画幅、分辨率、是否要音频），先定平台画幅。</p>
-      </div>
-      <div class="wf-step">
-        <div class="n">STEP 02</div>
-        <h4>资产准备</h4>
-        <p>选定统一参考主图，参考素材命名入库，按场景确定主模型与备选模型。</p>
-      </div>
-      <div class="wf-step">
-        <div class="n">STEP 03</div>
-        <h4>分镜与提示词</h4>
-        <p>先出分镜表，再用固定结构写提示词：主体锁定、场景、动作、镜头、光线、音频、约束。</p>
-      </div>
-      <div class="wf-step">
-        <div class="n">STEP 04</div>
-        <h4>生成与一致性</h4>
-        <p>统一主图、固定描述块、首尾帧锁定、尾帧接首帧、多图参考，保证主体不漂移。</p>
-      </div>
-      <div class="wf-step">
-        <div class="n">STEP 05</div>
-        <h4>校验与返工</h4>
-        <p>三级处理：局部编辑定点改、同素材重生成、改提示词与参考后重来，保留满意镜头。</p>
-      </div>
-      <div class="wf-step">
-        <div class="n">STEP 06</div>
-        <h4>剪辑成片</h4>
-        <p>按分镜拼接，统一调色与音量，加字幕、转场、配乐，全片规格与品牌信息校验。</p>
-      </div>
-      <div class="wf-step">
-        <div class="n">STEP 07</div>
-        <h4>沉淀复用</h4>
-        <p>提示词、参考主图、模板与踩坑记录入库，下次同类需求直接调用，缩短周期。</p>
-      </div>
-    </div>
-
-    <div class="sub-section-tag">实战案例：天机智能 AIGC 系列视频（场景—问题—工具—过程—结果）</div>
-    <div class="wf-case">
-      <h4 class="serif">具身智能产品的高频视频生产</h4>
-      <div class="note">按「场景、问题、工具、过程、结果」五步结构复盘</div>
-      <div class="wf-case-row"><div class="k">场景</div><div class="v">具身智能产品需要高频展会与社媒视频，团队此前没有成熟的 AI 生产流程。</div></div>
-      <div class="wf-case-row"><div class="k">问题</div><div class="v">传统实拍加后期单条约 15 天，赶不上展会节奏；跨部门需求反复、信息不互通。</div></div>
-      <div class="wf-case-row"><div class="k">工具</div><div class="v">豆包 / DeepSeek（脚本与提示词）、Seedance 2.0/2.5（画面生成）、Tapnow（分镜出图）、剪映（剪辑包装）。</div></div>
-      <div class="wf-case-row"><div class="k">过程</div><div class="v">统一参考主图与固定商品描述块，首尾帧锁定画面，尾帧接首帧串联镜头，局部编辑定点修复，按三级返工决策控制生成次数。</div></div>
-      <div class="wf-case-row"><div class="k">结果</div><div class="v">单条制作周期从 15 天缩短至 24 小时，0-1 跑通 AIGC 系列，并形成团队可复用的 SOP。</div></div>
-    </div>
-
-    <div class="sub-section-tag">工具边界：AI 负责提效，判断与校验由人完成</div>
-    <div class="wf-boundary">
-      <div class="wf-b-card">
-        <h5>脚本边界</h5>
-        <p>AI 初稿偏模板化，结合账号用户、产品方向与历史数据筛选，不直接采用。</p>
-      </div>
-      <div class="wf-b-card">
-        <h5>资料边界</h5>
-        <p>行业资料可能出错，关键事实人工核验，不把内容责任交给工具。</p>
-      </div>
-      <div class="wf-b-card">
-        <h5>表达边界</h5>
-        <p>人物对白按出镜人语言习惯重写，AI 不替代最终判断与审美。</p>
-      </div>
-    </div>
-
-    <div class="wf-result">
-      <div><div class="r-num">15天 → 24小时</div><div class="r-label">单条制作周期</div></div>
-      <div><div class="r-num">7 阶段</div><div class="r-label">标准化流程</div></div>
-      <div><div class="r-num">提示词 / 图库</div><div class="r-label">持续复用沉淀</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- AIGC -->
 <section id="aigc">
   <div class="container reveal">
-    <div class="section-tag">03 / AIGC VIDEO PRODUCTION</div>
+    <div class="section-tag">02 / AIGC VIDEO PRODUCTION</div>
     <h2 class="section-title serif">AIGC视频创作</h2>
     <div class="section-line"></div>
     <div class="featured-video">
@@ -395,6 +334,67 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- AI Workflow -->
+<section id="workflow">
+  <div class="container reveal">
+    <div class="section-tag">03 / AI WORKFLOW</div>
+    <h2 class="section-title serif">AIGC 生产工作流</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:760px;margin-bottom:34px;line-height:1.9">
+      从需求到 4K 成片的标准化管线，已在真实项目跑通并沉淀为团队 SOP。核心原则：<strong style="color:var(--ink)">先锁定不变的（结构、主体、风格），再生成变化的（动作、场景、镜头）；能用局部修改解决的，绝不整段重生成。</strong>
+    </p>
+
+    <div class="wf-chain">
+      <div class="wf-node">
+        <div class="stage">STAGE A</div>
+        <h4>Seedream</h4>
+        <div class="role">出参考资产</div>
+        <p>用 3D 模型的正视、侧视、45 度、背视四张正交截图，加一张统一参考主图，把产品真实结构钉死。AI 不知道底盘几个轮子、机械臂几段关节——这一步不解决，后面全是变形。</p>
+      </div>
+      <div class="wf-arrow">&#8594;</div>
+      <div class="wf-node">
+        <div class="stage">STAGE B</div>
+        <h4>Seedance 2.0 / 2.5</h4>
+        <div class="role">出视频镜头</div>
+        <p>全能参考模式，一次最多 5 张参考图。逐镜头粘贴六段结构提示词，主体描述块每个镜头原样复用；上一镜尾帧接下一镜首帧，单镜头 3–5 秒、16:9、1080P，每次出 3–5 条候选只取一条。</p>
+      </div>
+      <div class="wf-arrow">&#8594;</div>
+      <div class="wf-node">
+        <div class="stage">STAGE C</div>
+        <h4>剪映</h4>
+        <div class="role">出 4K 成片</div>
+        <p>按分镜顺序粗剪掐头去尾，音效精准卡在动作起点（轮子滚动、伺服电机、夹爪闭合），配乐压在音效之下 6–10dB，全片过画质修复后导出 3840×2160。</p>
+      </div>
+    </div>
+
+    <div class="sub-section-tag">八阶段流水线 · 每阶段设验收关卡，不过不进下一阶段</div>
+    <div class="wf-stage-grid">
+      <div class="wf-s"><div class="n">01</div><h5>需求拆解</h5><p>需求表填满，一句话创作简报确认</p></div>
+      <div class="wf-s"><div class="n">02</div><h5>资产准备</h5><p>3D 四视图、场景、人物、统一主图</p></div>
+      <div class="wf-s"><div class="n">03</div><h5>分镜脚本</h5><p>镜号、时长、景别、运镜先落定</p></div>
+      <div class="wf-s"><div class="n">04</div><h5>提示词</h5><p>六段结构，主体块逐镜复用不改写</p></div>
+      <div class="wf-s"><div class="n">05</div><h5>生成镜头</h5><p>全能参考，3–5 条候选取其一</p></div>
+      <div class="wf-s"><div class="n">06</div><h5>校验返工</h5><p>结构、外观、构图三级返工决策</p></div>
+      <div class="wf-s"><div class="n">07</div><h5>剪映成片</h5><p>音效卡点、画质修复至 4K</p></div>
+      <div class="wf-s"><div class="n">08</div><h5>落版交付</h5><p>效果确认后加落版，规范命名归档</p></div>
+    </div>
+
+    <div class="sub-section-tag">固定交付标准 · 不随需求变化</div>
+    <div class="wf-standard">
+      <span>16:9 横屏</span><span>单镜生成 1080P</span><span>成片交付 4K</span><span>单镜头 3–5 秒</span>
+      <span>配乐压于音效之下</span><span>音效卡动作起点</span><span>效果确认后才加落版</span>
+    </div>
+
+    <div class="wf-result">
+      <div><div class="r-num">15天 &#8594; 24小时</div><div class="r-label">单条制作周期</div></div>
+      <div><div class="r-num">8 阶段</div><div class="r-label">标准化管线</div></div>
+      <div><div class="r-num">4K</div><div class="r-label">成片交付规格</div></div>
+    </div>
+
+    <p class="wf-note-line">工具负责提效，判断与校验始终由人完成：脚本初稿不直接采用、行业资料关键事实人工核验、人物对白按出镜人语言习惯重写。</p>
   </div>
 </section>
 
