@@ -212,6 +212,14 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
   .section-title{font-size:26px}
   .mute-btn{right:20px;top:80px}
 }
+
+a.tab-btn{text-decoration:none;display:inline-block;line-height:1.4}
+@media(max-width:600px){
+  nav .container{padding:0 14px}
+  nav .logo{font-size:11px;letter-spacing:0}
+  .tabs{gap:2px}
+  .tab-btn{padding:5px 8px;font-size:11px}
+}
 </style>
 </head>
 <body>
@@ -222,6 +230,7 @@ footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
       <button class="tab-btn active" onclick="showPage(event,'works')">作品展示</button>
       <button class="tab-btn" onclick="showPage(event,'acg')">二次元创作</button>
       <button class="tab-btn" onclick="showPage(event,'resume')">个人简历</button>
+      <a class="tab-btn" href="en.html" style="text-decoration:none">EN</a>
     </div>
   </div>
 </nav>

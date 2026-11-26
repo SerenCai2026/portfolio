@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wanwen Cai — AIGC Video Director / Editor</title>
+<meta name="description" content="Portfolio of Wanwen Cai, AIGC video director and editor working across brand and product marketing content in China and the US.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C46B7A'>W</text></svg>">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --bg:#FAF6F3; --ink:#2D2B3D; --ink-light:#5C5870; --ink-lighter:#9A96A8;
+  --accent:#C46B7A; --accent-dark:#A85060; --gold:#E8A87C;
+  --accent-light:rgba(196,107,122,0.1); --line:#E8DFD9; --card:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Noto Serif SC',serif}
+.container{max-width:1100px;margin:0 auto;padding:0 40px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,246,243,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px 0}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+nav .logo{font-weight:700;font-size:15px;letter-spacing:1px}
+nav .logo span{color:var(--accent)}
+.tabs{display:flex;gap:6px}
+.tab-btn{padding:6px 18px;font-size:13px;border:none;background:0 0;color:var(--ink-light);cursor:pointer;border-radius:20px;transition:all .3s;font-family:inherit}
+.tab-btn.active{background:var(--ink);color:#fff}
+.tab-btn:hover:not(.active){color:var(--accent)}
+.page{display:none}.page.active{display:block}
+
+/* HERO with video bg */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg video{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,27,46,0.35) 0%,rgba(30,27,46,0.55) 100%)}
+.hero-content{position:relative;z-index:2;width:100%;color:#fff;padding:120px 0 80px}
+.hero-content .hero-tag{font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:20px}
+.hero-content h1{font-family:'Noto Serif SC',serif;font-size:64px;font-weight:900;line-height:1.1;margin-bottom:8px;letter-spacing:2px;text-shadow:0 2px 20px rgba(0,0,0,0.2)}
+.hero-content .role{font-size:20px;color:var(--gold);font-weight:500;margin-bottom:24px;text-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.hero-content .subtitle{font-size:15px;max-width:500px;line-height:1.9;margin-bottom:36px;opacity:0.92}
+.hero-stats{display:flex;gap:48px}
+.hero-stat .num{font-size:32px;font-weight:700;color:var(--gold);line-height:1}
+.hero-stat .label{font-size:12px;margin-top:6px;opacity:0.8}
+.mute-btn{position:absolute;top:90px;right:40px;z-index:10;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.mute-btn:hover{background:rgba(255,255,255,0.25)}
+
+/* Section */
+section{padding:90px 0}
+.section-tag{font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
+.section-title{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:700;margin-bottom:8px}
+.section-line{width:40px;height:3px;background:linear-gradient(90deg,var(--accent),var(--gold));margin:20px 0 44px;border-radius:2px}
+
+/* Cards */
+.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.adv-card{background:var(--card);padding:30px;border-radius:8px;border-left:3px solid var(--accent);box-shadow:0 2px 16px rgba(45,43,61,0.04)}
+.adv-num{font-size:13px;color:var(--accent);font-weight:700;margin-bottom:10px}
+.adv-card h3{font-size:16px;font-weight:700;margin-bottom:10px}
+.adv-card p{font-size:13px;color:var(--ink-light);line-height:1.7}
+
+/* Video */
+.featured-video{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(45,43,61,0.08);margin-bottom:24px}
+.featured-video video{width:100%;display:block}
+.fv-body{padding:32px}
+.fv-badge{display:inline-block;font-size:10px;letter-spacing:1px;color:#fff;background:var(--accent);padding:3px 12px;border-radius:2px;margin-bottom:12px}
+.fv-body h3{font-family:'Noto Serif SC',serif;font-size:22px;margin-bottom:12px}
+.fv-body p{font-size:14px;color:var(--ink-light);line-height:1.8;margin-bottom:12px}
+.fv-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.fv-tags span{font-size:11px;padding:4px 12px;background:var(--accent-light);color:var(--accent);border-radius:2px}
+
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.video-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
+.video-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.vc-body{padding:20px}
+.video-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.video-card p{font-size:12px;color:var(--ink-light);line-height:1.7}
+.fv-stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;align-items:baseline}
+.fv-stats .st{font-size:12px;color:var(--ink-light)}
+.fv-stats .st b{font-size:15px;color:var(--ink);font-weight:700;margin-right:3px}
+.fv-stats .st em{font-style:normal;color:var(--ink-lighter);font-size:11px}
+.vc-stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.vc-stats .st{font-size:11px;color:var(--ink-light)}
+.vc-stats .st b{font-size:13px;color:var(--ink);font-weight:700;margin-right:2px}
+
+/* Cosplay grid - 2 rows of 5 */
+.ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ac-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06);transition:transform .3s,box-shadow .3s}
+.ac-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(45,43,61,0.12)}
+.ac-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.ac-card .ac-body{padding:14px 16px}
+.ac-card h4{font-size:13px;font-weight:700}
+.ac-card p{font-size:11px;color:var(--ink-lighter);margin-top:2px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:32px}.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-32px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl-date{font-size:12px;color:var(--accent);font-weight:500;margin-bottom:4px}
+.tl-title{font-size:15px;font-weight:700;margin-bottom:2px}
+.tl-company{font-size:12px;color:var(--ink-lighter);margin-bottom:8px}
+.tl-desc{font-size:13px;color:var(--ink-light);line-height:1.7}
+
+/* MINISO */
+.sub-section-tag{font-size:13px;font-weight:700;margin:28px 0 16px;padding-left:12px;border-left:3px solid var(--accent)}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.work-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
+.work-card img{width:100%;display:block}
+.work-card .body{padding:22px}
+.work-card .tag{display:inline-block;font-size:10px;letter-spacing:1px;color:var(--accent);background:var(--accent-light);padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.work-card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.work-card p{font-size:12px;color:var(--ink-light);line-height:1.7}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.g-item{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:16/9}
+.g-item img{width:100%;height:100%;object-fit:cover}
+.g-item .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:#fff;padding:20px 14px 10px;font-size:12px}
+.miniso-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.miniso-video-grid .video-card video{aspect-ratio:16/9}
+
+/* AI Workflow */
+.wf-pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.wf-step{background:var(--card);border-radius:8px;padding:20px 18px;box-shadow:0 2px 16px rgba(45,43,61,0.05);border-top:3px solid var(--accent)}
+.wf-step .n{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:8px}
+.wf-step h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.wf-step p{font-size:12px;color:var(--ink-light);line-height:1.6}
+.wf-case{background:var(--card);border-radius:8px;padding:26px 30px;box-shadow:0 2px 16px rgba(45,43,61,0.05);margin-bottom:24px}
+.wf-case h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.wf-case .note{font-size:12px;color:var(--ink-lighter);margin-bottom:10px}
+.wf-case-row{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}
+.wf-case-row:last-child{border-bottom:0}
+.wf-case-row .k{color:var(--accent);font-weight:700}
+.wf-case-row .v{color:var(--ink-light);line-height:1.7}
+.wf-boundary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.wf-b-card{background:var(--accent-light);border-radius:8px;padding:18px}
+.wf-b-card h5{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--accent-dark)}
+.wf-b-card p{font-size:12px;color:var(--ink-light);line-height:1.6}
+.wf-result{display:flex;gap:48px;flex-wrap:wrap;margin-top:28px;padding:26px 30px;background:var(--ink);border-radius:8px;color:#fff}
+.wf-result .r-num{font-size:28px;font-weight:700;color:var(--gold);line-height:1.1}
+.wf-result .r-label{font-size:12px;opacity:.8;margin-top:6px}
+
+/* Workflow chain */
+.wf-chain{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;gap:0;align-items:stretch;margin-bottom:38px}
+.wf-node{background:var(--card);border-radius:10px;padding:24px 22px;box-shadow:0 2px 16px rgba(45,43,61,0.05);border-top:3px solid var(--accent);position:relative}
+.wf-node .stage{font-size:10px;letter-spacing:1.2px;color:var(--accent);font-weight:700;margin-bottom:10px}
+.wf-node h4{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:.3px}
+.wf-node .role{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:10px;display:inline-block;background:rgba(232,168,124,.14);padding:2px 8px;border-radius:2px}
+.wf-node p{font-size:12px;color:var(--ink-light);line-height:1.7}
+.wf-arrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;font-weight:300;opacity:.55}
+.wf-stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px}
+.wf-s{background:var(--card);border-radius:6px;padding:15px 14px;border-left:3px solid var(--accent);transition:.25s}
+.wf-s:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(196,107,122,.14)}
+.wf-s .n{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:6px}
+.wf-s h5{font-size:13px;font-weight:700;margin-bottom:5px}
+.wf-s p{font-size:11px;color:var(--ink-lighter);line-height:1.55}
+.wf-standard{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.wf-standard span{font-size:11px;color:var(--ink-light);background:var(--accent-light);border-radius:20px;padding:6px 13px}
+.wf-note-line{font-size:12px;color:var(--ink-lighter);line-height:1.8;margin-top:18px}
+
+/* Film */
+.film-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.film-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 2px 16px rgba(45,43,61,0.06)}
+.film-card .thumb{aspect-ratio:16/9;overflow:hidden;position:relative}
+.film-card .thumb img{width:100%;height:100%;object-fit:cover}
+.film-card .role-badge{position:absolute;top:10px;left:10px;background:var(--accent);color:#fff;font-size:10px;padding:3px 10px;border-radius:2px}
+.film-card .info{padding:18px}
+.film-card h3{font-size:15px;font-weight:700}
+.film-card .genre{font-size:11px;color:var(--accent);margin:4px 0 10px}
+.film-card .desc{font-size:12px;color:var(--ink-light);line-height:1.7}
+.film-btn{display:inline-block;margin-top:10px;padding:5px 14px;background:var(--accent);color:#fff;font-size:11px;text-decoration:none;border-radius:2px;transition:opacity .2s}
+.film-btn:hover{opacity:.85}
+
+/* Resume */
+.resume-header{padding:120px 0 40px}
+.resume-header h1{font-family:'Noto Serif SC',serif;font-size:42px;margin-bottom:4px}
+.resume-header .sub{font-size:16px;color:var(--accent);margin-bottom:24px}
+.resume-contact{font-size:13px;color:var(--ink-light);line-height:2}
+.resume-section{margin-bottom:40px}
+.resume-section h3{font-size:16px;font-weight:700;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:16px}
+.resume-item{margin-bottom:16px}
+.ri-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.ri-title{font-size:14px;font-weight:700}
+.ri-date{font-size:12px;color:var(--ink-lighter)}
+.ri-sub{font-size:12px;color:var(--ink-light);margin:2px 0 6px}
+.resume-item ul{padding-left:18px}
+.resume-item li{font-size:13px;color:var(--ink-light);line-height:1.8}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tags span{font-size:12px;padding:4px 12px;background:var(--accent-light);color:var(--ink);border-radius:2px}
+
+/* Contact */
+.contact{background:var(--ink);color:var(--bg);padding:80px 0}
+.contact .section-tag{color:var(--gold)}.contact .section-title{color:#fff}.contact .section-line{background:linear-gradient(90deg,var(--accent),var(--gold))}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.contact-info p{font-size:15px;margin-bottom:10px;opacity:.9}
+.contact-info strong{color:var(--gold)}
+footer{text-align:center;padding:28px;font-size:12px;color:var(--ink-lighter)}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .hero h1{font-size:42px}
+  .adv-grid,.work-grid,.video-grid,.contact-grid,.miniso-video-grid{grid-template-columns:1fr}
+  .ac-grid{grid-template-columns:1fr}
+  .wf-pipeline,.wf-boundary{grid-template-columns:1fr}
+  .wf-chain{grid-template-columns:1fr;gap:8px}
+  .wf-arrow{transform:rotate(90deg);height:18px}
+  .wf-stage-grid{grid-template-columns:repeat(2,1fr)}
+  .wf-case-row{grid-template-columns:1fr;gap:4px}
+  .gallery,.film-grid{grid-template-columns:1fr}
+  .container{padding:0 24px}
+  .section-title{font-size:26px}
+  .mute-btn{right:20px;top:80px}
+}
+</style>
+
+<style>
+a.tab-btn{text-decoration:none;display:inline-block;line-height:1.4}
+section[id]{scroll-margin-top:80px}
+@media(max-width:600px){
+  nav .logo{display:none}
+  nav .container{padding:0 12px}
+  .tabs{width:100%;justify-content:center;gap:2px}
+  .tab-btn{padding:6px 9px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <div class="logo">WANWEN CAI <span>·</span> PORTFOLIO</div>
+    <div class="tabs">
+      <a class="tab-btn active" href="#work">Work</a>
+      <a class="tab-btn" href="#tianji">Tianji</a>
+      <a class="tab-btn" href="#film">Film</a>
+      <a class="tab-btn" href="#contact">Contact</a>
+      <a class="tab-btn" href="index.html">中文</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">
+    <video src="web_assets/video-01.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-tag">PORTFOLIO / 2026</div>
+      <h1 class="serif">Wanwen Cai <span style="font-size:.36em;font-weight:400;letter-spacing:.08em;opacity:.9">蔡婉雯</span></h1>
+      <div class="role">AIGC Video Director / Editor · Brand &amp; Product Marketing Content</div>
+      <p class="subtitle">Film-school trained, AIGC-native. I turn brand and product ideas into production-ready visual content — and cut a single video from 15 days to 24 hours.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">24h</div><div class="label">per video</div></div>
+        <div class="hero-stat"><div class="num">11.9K</div><div class="label">followers</div></div>
+        <div class="hero-stat"><div class="num">500K+</div><div class="label">top video views</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="container reveal">
+    <div class="section-tag">01 / CORE STRENGTHS</div>
+    <h2 class="section-title serif">What I bring</h2>
+    <div class="section-line"></div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-num">01</div>
+        <h3>Film craft × end-to-end AIGC</h3>
+        <p>MFA in Film &amp; Television Production (Loyola Marymount University), GPA 3.9/4.0. Fluent in Seedream, Seedance, Kling AI and Jianying AI — I can take a project from concept to final cut alone.</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">02</div>
+        <h3>Brand &amp; product marketing, delivered solo</h3>
+        <p>From one product still to a runnable ad: AI generation, editing, sound and captions for gaming, e-commerce and FMCG clients — with a shorter cycle and a lower cost.</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">03</div>
+        <h3>Content judgment &amp; fandom insight</h3>
+        <p>Built two self-media accounts from zero to 11.9K followers; top video 500K+ views. Deep understanding of anime and game communities, and how to turn IP into shareable visual stories.</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-num">04</div>
+        <h3>Cross-cultural production</h3>
+        <p>TOEFL 101. Production experience in the US and with CCTV (outsourced projects). Comfortable moving between Chinese and international content standards, including bilingual subtitles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="container reveal">
+    <div class="section-tag">02 / SELECTED AIGC WORK</div>
+    <h2 class="section-title serif">AIGC video &amp; brand content</h2>
+    <div class="section-line"></div>
+
+    <div class="featured-video">
+      <video src="web_assets/video-02.mp4" controls preload="metadata" poster="web_assets/image-01.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">Original screenplay · AIGC concept</div>
+        <h3 class="serif">YUN KAI (云开) · AIGC narrative concept trailer</h3>
+        <p>An original screenplay taken into a full AIGC concept trailer: Seedream for character and location references, Seedance 2.0 for every shot, then edit, sound and titles. Built as a test of how far AI can carry narrative film language.</p>
+        <div class="fv-tags"><span>Original screenplay</span><span>Seedream</span><span>Seedance 2.0</span><span>AI-generated visuals</span><span>Concept trailer</span></div>
+      </div>
+    </div>
+
+    <div class="featured-video">
+      <video src="web_assets/video-03.mp4" controls preload="metadata" poster="web_assets/image-02.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">Game PV · AI-first production</div>
+        <h3 class="serif">CrossFire Mobile · CG test brief (30s / 60s)</h3>
+        <p>A director's treatment, storyboard, AI character sheets and prompt system for a 30s/60s CG test brief — shots generated in Seedance 2.0 and finished in Jianying AI, with sound design.</p>
+        <div class="fv-tags"><span>Director's treatment</span><span>Storyboard</span><span>Character sheets</span><span>Prompt engineering</span><span>Seedance</span><span>Jianying AI</span></div>
+      </div>
+    </div>
+
+    <div class="featured-video">
+      <video src="web_assets/video-04.mp4" controls preload="metadata" poster="web_assets/image-03.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">D2C explainer · AI-first production</div>
+        <h3 class="serif">BGI · Pet DNA test explainer</h3>
+        <p>A plain-language explainer for pet owners. Wrote the script and ran the full AIGC pipeline — Seedream character references, Seedance 2.5 footage, Jianying edit, captions and packaging.</p>
+        <div class="fv-tags"><span>Script</span><span>Full production</span><span>Seedream</span><span>Seedance 2.5</span><span>Jianying AI</span><span>Captions</span></div>
+      </div>
+    </div>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-05.mp4" controls preload="metadata" poster="web_assets/image-04.jpg"></video>
+        <div class="vc-body"><h4>mewaii · Black cat plush, Amazon ad</h4><p>StarPony supplied a single still. I built the rest — AI video generation, edit, AI score and captions — into an ad ready to run on Amazon.</p>
+          <div class="fv-tags" style="margin-top:12px"><span>Still-to-video</span><span>AI generation</span><span>AI score</span><span>Captions</span></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-06.mp4" controls preload="metadata" poster="web_assets/image-05.jpg"></video>
+        <div class="vc-body"><h4>Wuqiong Ludan × Dan Xiaomeng · “Work Buddy” (15s)</h4><p>Audience insight, IP character design, AI image-to-video and post for a 15s short aimed at 18–30 office workers.</p>
+          <div class="fv-tags" style="margin-top:12px"><span>Audience insight</span><span>IP design</span><span>Image-to-video</span><span>15s</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tianji">
+  <div class="container reveal">
+    <div class="section-tag">03 / TIANJI INTELLIGENCE</div>
+    <h2 class="section-title serif">TIANJI Intelligence · product films</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">AIGC Video Creative Editor at TIANJI Intelligence (Market Dept), Oct 2026–present. I create visual content for the GENTO / Luna embodied-AI line: AIGC concept films on one track; on-site exhibition and product films on the other.</p>
+
+    <div class="sub-section-tag">APEC 2026 / CoRL 2026 · exhibition films &amp; official media</div>
+    <div class="featured-video">
+      <video src="web_assets/video-24.mp4" controls preload="metadata" poster="web_assets/image-15.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">Published on China Daily's WeChat Channels</div>
+        <h3 class="serif">APEC 2026 · China Daily on-site report | post-production</h3>
+        <div class="fv-stats"><span class="st"><b>198</b><em>likes</em></span><span class="st"><b>84</b><em>shares</em></span><span class="st"><b>230</b><em>saves</em></span></div>
+        <p>TIANJI commissioned China Daily to shoot on site at APEC 2026. I handled post-production — edit, grade, titles and 4K delivery — through four review rounds before it went live on China Daily's official channel.</p>
+        <div class="fv-tags"><span>Commissioned shoot</span><span>Post-production</span><span>4K delivery</span><span>Official channel</span><span>2026.11</span></div>
+      </div>
+    </div>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-23.mp4" controls preload="metadata" poster="web_assets/image-14.jpg"></video>
+        <div class="vc-body"><h4>APEC 2026 · Gento Luna delivery diary</h4><p>Shot and edited on site at APEC for the Gento.ai sub-brand channel, with a unified opener and pacing.</p>
+          <div class="vc-stats"><span class="st"><b>198</b> likes</span><span class="st"><b>31</b> shares</span><span class="st"><b>230</b> saves</span></div>
+          <div class="fv-tags" style="margin-top:12px"><span>On-site shoot</span><span>Edit &amp; finish</span><span>2026.11</span></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-25.mp4" controls preload="metadata" poster="web_assets/image-16.jpg"></video>
+        <div class="vc-body"><h4>CoRL 2026 · 21-DoF dexterous hand debut</h4><p>On-site coverage at CoRL 2026 and the first public showing of TIANJI's 21-DoF dexterous hand.</p>
+          <div class="vc-stats"><span class="st"><b>422</b> likes</span><span class="st"><b>44</b> shares</span><span class="st"><b>385</b> saves</span></div>
+          <div class="fv-tags" style="margin-top:12px"><span>On-site shoot</span><span>Exhibition film</span><span>Dexterous hand</span></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-26.mp4" controls preload="metadata" poster="web_assets/image-17.jpg"></video>
+        <div class="vc-body"><h4>GENTO Luna · AIGC product concept film</h4><p>A concept film anchored on orthographic four-view renders of the 3D model, testing structural consistency across multiple generated shots.</p>
+          <div class="fv-tags" style="margin-top:12px"><span>Seedream refs</span><span>Seedance</span><span>Structure consistency</span></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ink-light);margin:-14px 0 30px">Front-stage engagement only (likes / shares / saves); no impressions or completion data.</p>
+
+    <div class="sub-section-tag">Dexterous hand · live-action product film</div>
+    <div class="featured-video">
+      <video src="web_assets/video-07.mp4" controls preload="metadata" poster="web_assets/image-06.jpg"></video>
+      <div class="fv-body">
+        <div class="fv-badge">Live-action · full production</div>
+        <h3 class="serif">TIANJI · self-developed dexterous hand</h3>
+        <p>A live-action product reveal, planned, shot and finished end to end — a restrained industrial visual language for structure and motion.</p>
+        <div class="fv-tags"><span>Planning</span><span>On-site shoot</span><span>Edit &amp; finish</span><span>Live action</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff" id="miniso">
+  <div class="container reveal">
+    <div class="section-tag">04 / MINISO</div>
+    <h2 class="section-title serif">MINISO · brand &amp; corporate content</h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">Video producer at MINISO's Overseas Business Division II (Mar–Sep 2026): brand films, leadership interviews, corporate culture content and store research for overseas markets.</p>
+
+    <div class="sub-section-tag">Benchmark interviews · end-to-end</div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-08.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>Canada · benchmark interview</h4><p>Topic, script, shoot and edit, all in one hand.</p></div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-09.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>Australia · benchmark interview</h4><p>Story mining on the ground, then cut into a portrait.</p></div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-10.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>Malaysia · benchmark interview</h4><p>Third in a three-part series supporting the culture recognition programme.</p></div>
+      </div>
+    </div>
+
+    <div class="sub-section-tag">Corporate events</div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video src="web_assets/video-11.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>MNI TALK finals · fast-cut recap</h4><p>On-site shoot and same-day fast-cut recap.</p></div>
+      </div>
+      <div class="video-card">
+        <video src="web_assets/video-12.mp4" controls preload="metadata"></video>
+        <div class="vc-body"><h4>H1 overseas milestones</h4><p>Cross-team asset integration; screened at the leadership conference.</p></div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--ink-light);margin-top:26px">Also: brand KV, IP culture walls and a one-week store study at MINISO LAND, Grandview Mall.</p>
+  </div>
+</section>
+
+<section id="film">
+  <div class="container reveal">
+    <div class="section-tag">05 / FILM WORKS</div>
+    <h2 class="section-title serif">Film works</h2>
+    <div class="section-line"></div>
+    <div class="film-grid">
+      <div class="film-card">
+        <div class="thumb"><img src="web_assets/image-07.jpg" alt="JUNE"><div class="role-badge">Writer / Director / Editor</div></div>
+        <div class="info"><h3>JUNE</h3><div class="genre">Thriller · 15 min</div><div class="desc">Wrote a 12-page English screenplay and led the shoot and post-production.</div></div>
+      </div>
+      <div class="film-card">
+        <div class="thumb"><img src="web_assets/image-08.jpg" alt="REUNION"><div class="role-badge">DIT / Editor</div></div>
+        <div class="info"><h3>REUNION</h3><div class="genre">Family drama · short</div><div class="desc">Selected for Poppy Jasper International Film Festival, Watsonville Film Festival 2025 and Sunscreen International Film Festival 2025 (Florida premiere); nominated for Best Original Score by Film Scoring Network.</div></div>
+      </div>
+      <div class="film-card">
+        <div class="thumb"><img src="web_assets/image-09.jpg" alt="LUCIANA"><div class="role-badge">Editor / Sound Design</div></div>
+        <div class="info"><h3>LUCIANA</h3><div class="genre">Coming-of-age · 25 min</div><div class="desc">Edited and sound-designed; shot in San Diego, US.</div></div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--ink-light);margin-top:26px">Screeners available on request — <a href="mailto:wanwencai2026@163.com" style="color:var(--accent);text-decoration:none">wanwencai2026@163.com</a></p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-tag">06 / CONTACT</div>
+    <h2 class="section-title serif">Let's work together</h2>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p><strong>Wanwen Cai</strong> 蔡婉雯</p>
+        <p>Phone / Tel：+86 158 1166 2058</p>
+        <p>Email：<a href="mailto:wanwencai2026@163.com" style="color:var(--gold);text-decoration:none">wanwencai2026@163.com</a></p>
+        <p>Based in：Shenzhen, Guangdong, China</p>
+        <p style="margin-top:18px"><a href="assets/resume.pdf" target="_blank" style="display:inline-block;background:var(--accent);color:#fff;font-size:13px;padding:10px 22px;border-radius:3px;text-decoration:none">Download CV (PDF · Chinese)</a></p>
+        <p style="font-size:12px;opacity:.6">English CV available on request.</p>
+      </div>
+      <div style="text-align:right;font-size:14px;opacity:.7">
+        <p>Stories for brands.</p>
+        <p>Content that connects.</p>
+        <p style="margin-top:18px"><a href="index.html" style="color:var(--gold);text-decoration:none">中文版作品集 →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Wanwen Cai · All Rights Reserved</footer>
+
+<script>
+const observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+</script>
+</body>
+</html>
