@@ -220,6 +220,9 @@ a.tab-btn{text-decoration:none;display:inline-block;line-height:1.4}
 section[id]{scroll-margin-top:80px}
 @media(max-width:600px){
   nav .logo{display:none}
+  .hero-content .role{font-size:16px}
+  .hero-stats{gap:24px}
+  .hero-stat .num{font-size:26px}
   nav .container{padding:0 12px}
   .tabs{width:100%;justify-content:center;gap:2px}
   .tab-btn{padding:6px 9px;font-size:12px}
@@ -247,7 +250,7 @@ section[id]{scroll-margin-top:80px}
   <div class="hero-content">
     <div class="container">
       <div class="hero-tag">PORTFOLIO / 2026</div>
-      <h1 class="serif">Wanwen Cai <span style="font-size:.36em;font-weight:400;letter-spacing:.08em;opacity:.9">蔡婉雯</span></h1>
+      <h1 class="serif">Wanwen Cai<br><span style="font-size:13px;font-weight:400;letter-spacing:.35em;opacity:.85">蔡婉雯</span></h1>
       <div class="role">AIGC Video Director / Editor · Brand &amp; Product Marketing Content</div>
       <p class="subtitle">Film-school trained, AIGC-native. I turn brand and product ideas into production-ready visual content — and cut a single video from 15 days to 24 hours.</p>
       <div class="hero-stats">
@@ -259,7 +262,7 @@ section[id]{scroll-margin-top:80px}
   </div>
 </section>
 
-<section id="work">
+<section>
   <div class="container reveal">
     <div class="section-tag">01 / CORE STRENGTHS</div>
     <h2 class="section-title serif">What I bring</h2>
@@ -289,7 +292,7 @@ section[id]{scroll-margin-top:80px}
   </div>
 </section>
 
-<section style="background:#fff">
+<section id="work" style="background:#fff">
   <div class="container reveal">
     <div class="section-tag">02 / SELECTED AIGC WORK</div>
     <h2 class="section-title serif">AIGC video &amp; brand content</h2>
@@ -345,7 +348,7 @@ section[id]{scroll-margin-top:80px}
 <section id="tianji">
   <div class="container reveal">
     <div class="section-tag">03 / TIANJI INTELLIGENCE</div>
-    <h2 class="section-title serif">TIANJI Intelligence · product films</h2>
+    <h2 class="section-title serif">TIANJI Intelligence · visual content</h2>
     <div class="section-line"></div>
     <p style="font-size:14px;color:var(--ink-light);max-width:720px;margin-bottom:40px;line-height:1.9">AIGC Video Creative Editor at TIANJI Intelligence (Market Dept), Oct 2026–present. I create visual content for the GENTO / Luna embodied-AI line: AIGC concept films on one track; on-site exhibition and product films on the other.</p>
 
@@ -486,6 +489,14 @@ section[id]{scroll-margin-top:80px}
 <footer>© 2026 Wanwen Cai · All Rights Reserved</footer>
 
 <script>
+const links=Array.from(document.querySelectorAll('.tabs .tab-btn')).filter(function(a){return a.hash});
+function spy(){
+  var pos=window.scrollY+140, cur=links[0];
+  links.forEach(function(a){var el=document.querySelector(a.hash); if(el&&el.offsetTop<=pos)cur=a;});
+  links.forEach(function(a){a.classList.toggle('active',a===cur)});
+}
+window.addEventListener('scroll',spy,{passive:true}); spy();
+
 const observer=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:0.1});
